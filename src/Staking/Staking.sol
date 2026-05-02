@@ -140,6 +140,9 @@ contract Staking is IStaking, Ownable2Step, ReentrancyGuard, Pausable {
         uint64 unlockTime;
         uint128 boostedAmount;
         (stakeId, unlockTime, boostedAmount) = _createStake(msg.sender, amount, tierId, tier);
+        if (amount == MIN_STAKE_AMOUNT && _userActiveStakeCount[msg.sender] > 1) {
+            rewards[msg.sender][primaryRewardToken] += earnedUser(msg.sender, primaryRewardToken);
+        }
 
         emit Staked(msg.sender, stakeId, amount, tierId, unlockTime, boostedAmount);
     }
