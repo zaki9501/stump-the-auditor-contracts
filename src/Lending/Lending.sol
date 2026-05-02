@@ -31,11 +31,6 @@ import {LendingMath} from "./LendingMath.sol";
 ///     Both `supplyIndex` and `borrowIndex` monotonically increase over time. Suppliers' claim grows via supplyIndex;
 ///     borrowers' debt grows via borrowIndex. The delta between them × reserveFactor accrues to `accruedReserves`.
 ///
-///   Rounding directions (all favor the protocol):
-///     - supply: scaled amount rounded DOWN (user receives fewer scaled units).
-///     - withdraw: scaled amount burned rounded UP (user pays more scaled).
-///     - borrow: scaled amount rounded UP (borrower owes at least the requested).
-///     - repay: scaled amount credited rounded DOWN (user pays off slightly less per token).
 ///
 ///   Health factor: `HF = sum(collateralValueUSD × liquidationThreshold) / sum(debtValueUSD)` in WAD.
 ///     HF >= 1e18 is healthy. HF < 1e18 is liquidatable.
